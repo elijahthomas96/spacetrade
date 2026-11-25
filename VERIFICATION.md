@@ -105,7 +105,7 @@ Setup: start a fresh campaign, either by deleting `campaign.sts.json` or with Me
 | Switch to 3x | Real ETA = 1x value ÷ 3 = 58m 00s; arrival date unchanged | ±1 s | | |
 | Release build has no debug toggle or "Skip to next arrival" | absent | n/a | | |
 
-The ship panel shows progress as a percentage and as ly covered ("0.15 of 4.50 ly"), along with the game arrival date and the remaining real time. The close-up view (`C`) shows the same readout.
+The ship panel shows progress as a percentage and as ly covered ("0.15 of 4.50 ly"), along with the game arrival date and the remaining real time. The close-up view (`C`) shows progress, the arrival date and the real ETA.
 
 Record: build type (release), Windows version, monitor refresh rate, and whether vsync was on. The clock is independent of frame rate, so the refresh rate should not matter.
 
