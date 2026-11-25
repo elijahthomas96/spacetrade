@@ -24,6 +24,8 @@ crashlytics-build.properties
 *.userprefs
 *.unityproj
 *.DotSettings.user
+# The standalone .NET projects are hand-written, not Unity-generated
+!/dotnet/**/*.csproj
 # dotnet sim/test output
 bin/
 obj/
