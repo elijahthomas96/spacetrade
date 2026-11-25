@@ -146,6 +146,7 @@ Saves are versioned JSON files in Unity's `Application.persistentDataPath`. On W
     campaign.sts.json     fresh-start campaign (created on first launch)
     demo.sts.json         populated demonstration network (Menu > Open demonstration company)
     *.sts.json.bak        previous good copy, used if the main file is unreadable
+    *.unreadable-<time>   kept if both the save and its .bak fail to load (a new game starts)
 ```
 
 Writes are atomic: the game writes a temporary file, flushes it, then swaps it in with `File.Replace`, keeping the previous save as `.bak`. The game saves every 30 real seconds, after each launch, purchase or route change, on focus loss and on quit.

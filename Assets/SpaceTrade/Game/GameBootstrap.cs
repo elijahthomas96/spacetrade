@@ -81,7 +81,16 @@ namespace SpaceTrade.Game
             if (!forceNew && Store.Exists(slot))
             {
                 try { state = Store.Load(slot); loaded = true; }
-                catch (Exception e) { Debug.LogError("Could not load save '" + slot + "': " + e.Message); }
+                catch (Exception e)
+                {
+                    Debug.LogError("Could not load save '" + slot + "': " + e.Message);
+                    try
+                    {
+                        string path = Store.PathFor(slot);
+                        System.IO.File.Copy(path, path + ".unreadable-" + DateTime.UtcNow.ToString("yyyyMMdd-HHmmss"), true);
+                    }
+                    catch (Exception copyError) { Debug.LogError("Could not preserve unreadable save: " + copyError.Message); }
+                }
             }
             if (state == null)
                 state = slot == SaveStore.DemoSlot ? Scenarios.Demo(seed, _wall.UtcNow) : Scenarios.NewGame(seed, _wall.UtcNow);
