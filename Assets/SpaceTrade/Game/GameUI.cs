@@ -101,8 +101,12 @@ namespace SpaceTrade.Game
             int found = _lastSeenNotice == null ? -1 : list.LastIndexOf(_lastSeenNotice);
             int start = _lastSeenNotice == null ? 0 : (found < 0 ? Math.Max(0, list.Count - 3) : found + 1);
             for (int i = start; i < list.Count; i++)
+            {
                 if (list[i].Kind == NoticeKind.Arrival || list[i].Kind == NoticeKind.Blocked || list[i].Kind == NoticeKind.Purchase)
                     _toasts.Add(new KeyValuePair<Notification, float>(list[i], Time.unscaledTime + 7f));
+                if (list[i].Kind == NoticeKind.Arrival && list[i].ShipId == _shipId && (_panel == Panel.Ship || _panel == Panel.None) && _modal == Modal.None)
+                    ShowReceiptFor(_shipId);
+            }
             if (list.Count > 0) _lastSeenNotice = list[list.Count - 1];
             _toasts.RemoveAll(t => t.Value < Time.unscaledTime);
             while (_toasts.Count > 4) _toasts.RemoveAt(0);
